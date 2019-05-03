@@ -1,0 +1,28 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directories
+node_modules/
+.npm
+
+# Output of 'npm pack'
+*.tgz
+
+# bot token
+*.token
+
+# SQLite
+db/
+
+# HTML parser
+html_parser/
