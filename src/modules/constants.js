@@ -23,7 +23,6 @@ module.exports = {
     DESTR_NOT_FOUND: 'Destruction item not found. Use **r/destr** for list of destruction items.',
     COMMAND_NOT_FOUND: 'Command not found. Use **r/help** for list of commands.',
     PREMIUM_NOT_FOUND: 'This server does not have Rust Bot Premium. Use **r/upgrade** for information on upgrading.',
-    UPGRADE: 'Upgrade to Rust Bot Premium for $1.99/server. BTC/PP payment methods accepted. Message *CherryPepsi#3151* about upgrading.',
 
     // Discord message limit
     BUFFER_SIZE: 2000,

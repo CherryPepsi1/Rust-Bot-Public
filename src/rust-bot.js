@@ -65,10 +65,6 @@ client.on('message', (message) => {
         message.channel.send(constants.PREMIUM_NOT_FOUND);
         break;
 
-      case 'upgrade':
-        message.channel.send(constants.UPGRADE);
-        break;
-
       default:
         console.log('command not found')
         message.channel.send(constants.COMMAND_NOT_FOUND);
