@@ -45,7 +45,7 @@ module.exports = {
       });
 
     } else {
-      console.log('listing items that start with \'' + params + '\'');
+      console.log(`listing items that start with '${params}'`);
       arr.forEach(value => {
         if (value.Name.indexOf(params) == 0) {
           msg = buildMsg(msg, templates.item(value));
@@ -79,7 +79,7 @@ module.exports = {
       });
 
     } else {
-      console.log('listing destruction items that start with \'' + params + '\'');
+      console.log(`listing destruction items that start with '${params}'`);
       arr.forEach(value => {
         if (value.Name.indexOf(params) == 0) {
           msg = buildMsg(msg, templates.destr(value));
@@ -91,6 +91,40 @@ module.exports = {
 
       if (!msg) {
         msg = constants.DESTR_NOT_FOUND;
+      }
+    }
+
+    msgArr.push(msg);
+    return msgArr;
+  },
+
+  /**
+   * Execute command 'puzzle'.
+   *
+   * @param String        params
+   * @param Array<Puzzle> arr
+   * @return Array<String> message array
+   */
+  puzzle: (params, arr) => {
+    msgArr = [];
+    let msg = '';
+
+    if (!params) {
+      console.log('listing all puzzle monuments');
+      arr.forEach(value => {
+        msg = buildMsg(msg, templates.all(value));
+      });
+
+    } else {
+      console.log(`listing puzzles for monuments that start with '${params}'`);
+      arr.forEach(value => {
+        if (value.Name.indexOf(params) == 0) {
+          msg = buildMsg(msg, templates.puzzle(value));
+        }
+      });
+
+      if (!msg) {
+        msg = constants.PUZZLE_NOT_FOUND;
       }
     }
 

@@ -1,6 +1,6 @@
 ## Rust Bot
 
-Discord bot for Rust in-game info. All item data has been pulled from https://rustlabs.com. Steps listed are for Ubuntu 18.04.
+Discord bot for Rust in-game info. Item data was pulled from https://rustlabs.com. Puzzle data was pulled from https://www.rustafied.com. Steps listed are for Ubuntu 18.04.
 
 ### Requirements
 
@@ -34,6 +34,8 @@ npm install sqlite3
 * *r/item [start]*
 * *r/destr*
 * *r/destr [start]*
+* *r/puzzle*
+* *r/puzzle [start]*
 
 ### Authors
 

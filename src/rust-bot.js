@@ -1,19 +1,26 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const Worker = require('webworker-threads').Worker;
 const commands = require('./modules/commands.js');
 const sql = require('./modules/sql.js');
+const templates = require('./modules/templates.js');
 const constants = require('./modules/constants.js');
 
 const client = new Discord.Client();
 const token = fs.readFileSync(constants.TOKEN_PATH, 'utf-8').slice(0, -1);
 var itemArr = [];
-var destrArr = []; 
+var destrArr = [];
+var puzzleArr = [];
 
 client.on('ready', () => {
-  sql.selectAllItems(itemArr);
-  sql.selectAllDestr(destrArr); 
-
+  if (itemArr.length == 0) {
+    sql.selectAllItems(itemArr);
+  }
+  if (destrArr.length == 0) {
+    sql.selectAllDestr(destrArr);
+  }
+  if (puzzleArr.length == 0) {
+    sql.selectAllPuzzles(puzzleArr);
+  }
   console.log('Rust Bot is ready');
 });
 
@@ -21,7 +28,11 @@ client.on('message', (message) => {
   // Check for user message and 'r/' command prefix
   if (!message.author.bot && message.content.startsWith(constants.PREFIX)) {
     var content = message.content.toLowerCase();
-    console.log('\n' + message.guild.id);
+    if (message.guild) {
+      console.log(`\n${message.guild.id}`);
+    } else {
+      console.log(`\n${message.channel.id}`);
+    }
     console.log(message.author.tag);
     console.log(content);
 
@@ -57,12 +68,39 @@ client.on('message', (message) => {
         });
         break;
 
+      case 'puzzle':
+        msgArr = commands.puzzle(params, puzzleArr);
+	msgArr.forEach(value => {
+          message.channel.send(value);
+        });
+        break;
+
       case 'bp':
         message.channel.send(constants.PREMIUM_NOT_FOUND);
         break;
 
       case 'bpclear':
         message.channel.send(constants.PREMIUM_NOT_FOUND);
+        break;
+
+      case 'upgrade':
+        message.channel.send(constants.UPGRADE);
+        break;
+
+      case 'donate':
+        message.author.send(templates.donateUrl(message.author.id));
+        break;
+
+      case 'comment':
+        client.guilds.find(g => g.id === constants.SUPPORT_SERVER)
+          .channels.find(c => c.id === constants.SUPPORT_CHANNEL)
+          .send(`**${message.author.username}**\n${params}`);
+        break;
+
+      case 'commenta':
+        client.guilds.find(g => g.id === constants.SUPPORT_SERVER)
+          .channels.find(c => c.id === constants.SUPPORT_CHANNEL)
+          .send(`**Anonymous**\n${params}`);
         break;
 
       default:
@@ -73,7 +111,7 @@ client.on('message', (message) => {
 });
 
 client.on('error', (err) => {
-   console.log(err.message)
+  console.log(err.message);
 });
 
 client.login(token);
