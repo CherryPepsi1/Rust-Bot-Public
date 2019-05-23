@@ -11,7 +11,7 @@ const constants = require('./constants.js');
 function selectIngreds(name, arr) {
   let db = new sqlite3.Database(constants.DB_ITEMS, sqlite3.OPEN_READONLY);
   let sql = 
-    `SELECT Ingredient, Quantity FROM ${constants.TABLE_INGREDS} ` + 
+    `SELECT Ingredient, Quantity FROM ${constants.TABLE_INGREDS} ` +
     `WHERE Name = ? ORDER BY Ingredient`;
   db.each(sql, [name], (err, row) => {
     if (err) {
@@ -29,7 +29,7 @@ function selectIngreds(name, arr) {
 function selectReqs(name, arr) {
   let db = new sqlite3.Database(constants.DB_PUZZLES, sqlite3.OPEN_READONLY);
   let sql = 
-    `SELECT Requirement FROM ${constants.TABLE_REQS} ` + 
+    `SELECT Requirement FROM ${constants.TABLE_REQS} ` +
     `WHERE Name = ? ORDER BY Requirement`;
   db.each(sql, [name], (err, row) => {
     if (err) {
@@ -47,7 +47,7 @@ function selectReqs(name, arr) {
 function selectLoot(name, arr) {
   let db = new sqlite3.Database(constants.DB_PUZZLES, sqlite3.OPEN_READONLY);
   let sql = 
-    `SELECT Loot FROM ${constants.TABLE_LOOT} ` + 
+    `SELECT Loot FROM ${constants.TABLE_LOOT} ` +
     `WHERE Name = ? ORDER BY Loot`;
   db.each(sql, [name], (err, row) => {
     if (err) {
@@ -65,7 +65,7 @@ function selectLoot(name, arr) {
 function selectSolution(name, arr) {
   let db = new sqlite3.Database(constants.DB_PUZZLES, sqlite3.OPEN_READONLY);
   let sql = 
-    `SELECT Step, Task FROM ${constants.TABLE_SOLUTIONS} ` + 
+    `SELECT Step, Task FROM ${constants.TABLE_SOLUTIONS} ` +
     `WHERE Name = ? ORDER BY Step`;
   db.each(sql, [name], (err, row) => {
     if (err) {

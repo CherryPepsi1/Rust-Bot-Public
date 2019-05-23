@@ -2,6 +2,8 @@ const constants = require('./constants.js');
 
 // Exceptions to display name convention
 const exceptions = [ 'and', 'or', 'hbhf', 'hv', 'mp5a4', 'rand', 'xor', 'rf', 'sam', 'smg' ];
+// Date format options
+const options = { month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
 
 /**
  * Get display name for item.
@@ -93,7 +95,21 @@ module.exports = {
    * @returns String
    */
    donateUrl: (user) => {
-     return `${constants.DONATE_URL}?buyer=${user}`
+     return `Donate to Rust Bot at ${constants.DONATE_URL}?buyer=${user}.`;
+   },
+
+  /**
+   * Get log string for input message.
+   *
+   * @param Object message
+   * @returns String
+   */
+   inputLog: (message) => {
+     let datetime = new Date().toLocaleTimeString('default', options);
+     if (message.guild) {
+       return `[${datetime}] ${message.guild.id} ${message.author.tag} ${message.content}\n`;
+     }
+     return `[${datetime}] ${message.channel.type} ${message.author.tag} ${message.content}\n`;
    }
 
 }

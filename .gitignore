@@ -18,11 +18,10 @@ node_modules/
 # Output of 'npm pack'
 *.tgz
 
-# bot token
+# Tokens
+tokens/
 *.token
 
-# SQLite
-db/
-
 # HTML parser
-html_parser/
+*.out
+.vscode/

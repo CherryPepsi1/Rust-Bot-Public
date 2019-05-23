@@ -1,2 +1,2 @@
 #!/bin/bash
-node src/rust-bot.js
+node src/main.js

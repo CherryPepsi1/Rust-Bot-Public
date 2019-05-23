@@ -18,16 +18,6 @@ function buildMsg(msg, str) {
 module.exports = {
 
   /**
-   * Execute command 'help'.
-   *
-   * @return String message
-   */
-  help: () => {
-    console.log('listing commands');
-    return constants.HELP;
-  },
-
-  /**
    * Execute command 'item'.
    *
    * @param String      params
@@ -116,7 +106,7 @@ module.exports = {
       });
 
     } else {
-      console.log(`listing puzzles for monuments that start with '${params}'`);
+      console.log(`listing puzzles that start with '${params}'`);
       arr.forEach(value => {
         if (value.Name.indexOf(params) == 0) {
           msg = buildMsg(msg, templates.puzzle(value));
