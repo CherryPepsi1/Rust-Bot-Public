@@ -7,19 +7,14 @@ Discord bot for Rust in-game info. Item data was pulled from https://rustlabs.co
 * nodejs
 * npm
 * discord.js
+* dblapi.js
 * sqlite3
 ```
 sudo apt-get install nodejs npm
 npm install discord.js
+npm install dblapi.js
 npm install sqlite3
 ```
-
-### Setup
-
- 1. Create new app at https://discordapp.com/developers/applications.
- 2. Create new bot for application.
- 3. Add bot to Discord server at https://discordapp.com/oauth2/authorize?&client_id=[client-id]&scope=bot.
- 4. Save bot token at root within file named **rust-bot.token**.
 
 ### Running
 
